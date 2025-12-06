@@ -5,13 +5,13 @@ import { ApiResponse } from "../utils/ApiResponse.js"
 
 const order_placed = asyncHandler(async (req, res) => {
     const { company, country, email } = req.body.billing;
-    const currency = req.body;
+    const currency = req.body.currency;
 
     if(!company || !country || !email || !currency) {
         throw new ApiError(400, "Failed to get required fields!")
     }
 
-    const abbrevation = company.slice(0, 5).toUpperCase().trim();
+    const abbrevation = company.slice(0, 3).toUpperCase().trim();
 
     const data = await createCompany(company, abbrevation, currency, country, email)
 
