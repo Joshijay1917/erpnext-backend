@@ -11,7 +11,7 @@ const order_placed = asyncHandler(async (req, res) => {
         throw new ApiError(400, "Failed to get required fields!")
     }
 
-    const abbrevation = company.slice(0, 3).toUpperCase();
+    const abbrevation = company.slice(0, 5).toUpperCase().trim();
 
     const data = await createCompany(company, abbrevation, currency, country, email)
 
