@@ -4,17 +4,22 @@ export async function createCompany(company_name, abbrevation, currency, country
             method: 'POST',
             headers: {
                 'Authorization': `token ${process.env.API_KEY}:${process.env.API_SECRET}`,
-                "Content-Type":" application/json"
+                "Content-Type": "application/json"
             },
             body: JSON.stringify({
                 "company_name": company_name,
                 "abbr": abbrevation,
                 "default_currency": currency,
                 "country": country,
-                "email": email
+                "email": email,
+                "domain": "Retail"
             })
         })
         const data = await res.json()
+        if (data.exception || data.exc) {
+            console.error("ERPNext API Error:", data.exception)
+            return null;
+        }
         return data;
     } catch (error) {
         console.error(`Failed to create company(${company_name})!! `, error)
