@@ -1,4 +1,4 @@
-export async function createCompany(company_name, abbr, currency, country, email) {
+export async function createCompany(company_name, abbrevation, currency, country, email) {
     try {
         const res = await fetch(`${process.env.BASE_URL}/api/resource/Company`, {
             method: 'POST',
@@ -7,10 +7,11 @@ export async function createCompany(company_name, abbr, currency, country, email
                 "Content-Type":" application/json"
             },
             body: JSON.stringify({
-                "company_name": `${company_name}`,
-                "abbr": "MNC",
-                "default_currency": "USD",
-                "country": "United States"
+                "company_name": company_name,
+                "abbr": abbrevation,
+                "default_currency": currency,
+                "country": country,
+                "email": email
             })
         })
         const data = await res.json()
