@@ -1,3 +1,5 @@
+import { getCountryFullName } from "./getFullCountryName.js"
+
 export async function createCompany(company_name, abbrevation, currency, country, email) {
     try {
         console.log("Data:", {company_name, abbrevation, currency, country, email})
@@ -11,7 +13,7 @@ export async function createCompany(company_name, abbrevation, currency, country
                 "company_name": company_name,
                 "abbr": abbrevation,
                 "default_currency": currency,
-                "country": country,
+                "country": getCountryFullName(country),
                 "email": email,
                 "domain": "Retail"
             })
