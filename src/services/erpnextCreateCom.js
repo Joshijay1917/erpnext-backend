@@ -1,5 +1,6 @@
 export async function createCompany(company_name, abbrevation, currency, country, email) {
     try {
+        console.log("Data:", {company_name, abbrevation, currency, country, email})
         const res = await fetch(`${process.env.BASE_URL}/api/resource/Company`, {
             method: 'POST',
             headers: {
